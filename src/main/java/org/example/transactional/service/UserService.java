@@ -18,19 +18,14 @@ private UserRepository userRepository;
       User user = userRepository.findById(userId).orElseThrow();
       user.setBalance(user.getBalance()-amount);
       userRepository.save(user);
-
-      user.setBalance(user.getBalance()-amount);
-      userRepository.save(user);
     }
+    
 @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void credit(Long userId, Double amount){
 
         User user = userRepository.findById(userId).orElseThrow();
         user.setBalance(user.getBalance()+amount);
         userRepository.save(user);
-
-    user.setBalance(user.getBalance()+amount);
-    userRepository.save(user);
     }
 
 }
